@@ -63,7 +63,7 @@ const getEventTarget = (editor: Editor, eventName: string): Node => {
 const isListening = (editor: Editor) => !editor.hidden && !isReadOnly(editor);
 
 const fireEvent = (editor: Editor, eventName: string, e: Event) => {
-  if (isListening(editor)) {
+  if (isListening(editor) || eventName === 'copy') {
     editor.fire(eventName, e);
   } else if (isReadOnly(editor)) {
     processReadonlyEvents(editor, e);
